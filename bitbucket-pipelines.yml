@@ -17,30 +17,30 @@ pipelines:
             caches:
               - node
             script:
-              - npm install
-              - npm test
-        - step:
-            name: Code linting
-            script:
-              - npm install eslint
-              - npx eslint .
-            caches:
-              - node
+              - yarn
+              # - npm test
+        # - step:
+        #     name: Code linting
+        #     script:
+        #       # - npm install eslint
+        #       # - npx eslint .
+        #     caches:
+        #       - node
   branches:
     get-started-ci-cd:
       - parallel:
-          - step:
-              name: Build and Test
-              caches:
-                - node
-              script:
-                - npm install
-                - npm test
-                - apt update && apt install zip
-                # Exclude files to be ignored
-                - zip -r app-$BITBUCKET_BUILD_NUMBER.zip . -x *.git* bitbucket-pipelines.yml
-              artifacts:
-                - "*.zip"
+          # - step:
+          #     name: Build and Test
+          #     caches:
+          #       - node
+          #     script:
+          #       - yarn
+          #       # - npm test
+          #       - apt update && apt install zip
+          #       # Exclude files to be ignored
+          #       - zip -r app-$BITBUCKET_BUILD_NUMBER.zip . -x *.git* bitbucket-pipelines.yml
+          #     artifacts:
+          #       - "*.zip"
           - step:
               name: Security Scan
               script:
