@@ -54,3 +54,4 @@ pipelines:
             - echo $ssh_key >> ./sshKey
             - ssh -i ./sshKey chatbot@104.46.228.65
             - ls
+            
