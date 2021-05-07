@@ -27,7 +27,7 @@ pipelines:
             caches:
               - node
   branches:
-    master:
+    get-started-ci-cd:
       - parallel:
           - step:
               name: Build and Test
@@ -49,14 +49,8 @@ pipelines:
                 - pipe: atlassian/git-secrets-scan:0.4.3
       - step:
           name: Deploy to Production Alternative
-          trigger: manual
           deployment: Production
           script:
-            - pipe: microsoft/azure-web-apps-deploy:1.0.3
-              variables:
-                AZURE_APP_ID: $AZURE_APP_ID
-                AZURE_PASSWORD: $AZURE_PASSWORD
-                AZURE_TENANT_ID: $AZURE_TENANT_ID
-                AZURE_RESOURCE_GROUP: $AZURE_RESOURCE_GROUP
-                AZURE_APP_NAME: $AZURE_APP_NAME
-                ZIP_FILE: app-$BITBUCKET_BUILD_NUMBER.zip
+            - echo $ssh_key >> ./ssh/key
+            - ssh -i ./ssh/key chatbot@104.46.228.65
+            - ls
