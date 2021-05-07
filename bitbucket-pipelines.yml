@@ -51,6 +51,6 @@ pipelines:
           name: Deploy to Production Alternative
           deployment: Production
           script:
-            - echo $ssh_key >> ./ssh/key
-            - ssh -i ./ssh/key chatbot@104.46.228.65
+            - echo $ssh_key >> ./sshKey
+            - ssh -i ./sshKey chatbot@104.46.228.65
             - ls
